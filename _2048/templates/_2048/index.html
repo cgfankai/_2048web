@@ -15,13 +15,13 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-11">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-12">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-13">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-14">
         </div>
     </div>
@@ -29,13 +29,13 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-21">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-22">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-23">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-24">
         </div>
     </div>
@@ -43,13 +43,13 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-31">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-32">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-33">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-34">
         </div>
     </div>
@@ -57,36 +57,71 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-41">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-42">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-43">
         </div>
-         <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3">
             <input type="button" class="btn btn-default" id="grid-44">
         </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <input class="btn btn-default" value="上滑" onclick="upSlide()">
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <input class="btn btn-default" value="左滑" onclick="upSlide()">
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <p id="record" class="text-info"></p>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <input class="btn btn-default" value="右滑" onclick="upSlide()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <input class="btn btn-default" value="上滑" onclick="upSlide()">
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    </div>
+</div>
 <script>
     'use strict';
-    (function (){
+    var steps = -1;
+    (function () {
         setNumInARandomBlankGrid()
     })();
     function setNumInARandomBlankGrid() {
+        steps++;
+        $('#record').text("第" + steps + '步')
         var blankGridIds = getBlankGrids();
+        if(blankGridIds.length < 2){
+            $('#record').text("失败！");
+            console.info("fail")
+            return;
+        }
         var i = Math.floor(Math.random() * blankGridIds.length);
         do {
             var j = Math.floor(Math.random() * blankGridIds.length);
-        }while (i == j);
+        } while (i == j);
         $('#' + blankGridIds[i]).val(2);
         $('#' + blankGridIds[j]).val(2);
     }
-    function getBlankGrids(){
+    function getBlankGrids() {
         var result = [];
-        for(var i = 1; i <= 4; i++){
-            for(var j = 1; j<= 4; j++){
-                if($("#grid-"+i + j).val() == ""){
+        for (var i = 1; i <= 4; i++) {
+            for (var j = 1; j <= 4; j++) {
+                if ($("#grid-" + i + j).val() == "") {
                     result.push('grid-' + i + j);
                 }
             }
@@ -94,9 +129,38 @@
         return result;
     }
     function upSlide() {
-        
+        for (var column = 1; column <= 4; column++) {
+            for (var row = 1; row < 4; row++) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    for (var nextRow = row + 1; nextRow <= 4; nextRow++) {
+                        if ($('#grid-' + nextRow + column).val() == cur.val()) {
+                            var i = parseInt(cur.val());
+                            var j =  parseInt($('#grid-' + nextRow + column).val());
+                            cur.val(i+j);
+                            $('#grid-' + nextRow + column).val("");
+                            break;
+                        }else if ($('#grid-' + nextRow + column).val() != ""){
+                            break;
+                        }
+                    }
+                }
+            }
+            var curValues = [];
+            for (var row = 1; row <= 4; row++) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    curValues.push(cur.val());
+                    cur.val("")
+                }
+            }
+            curValues.forEach(function (item, index) {
+                $('#grid-' + (index + 1) + column).val(item);
+            })
+        }
+        setNumInARandomBlankGrid();
     }
-    
+
 </script>
 
 </body>
