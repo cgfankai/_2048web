@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2048</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/jquery-3.2.1.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+<p>this is a page of django.</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-11">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-12">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-13">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-14">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-21">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-22">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-23">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-24">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-31">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-32">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-33">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-34">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-41">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-42">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-43">
+        </div>
+         <div class="col-xs-3 col-sm-3 col-md-3">
+            <input type="button" class="btn btn-default" id="grid-44">
+        </div>
+    </div>
+</div>
+<script>
+    'use strict';
+    (function (){
+        setNumInARandomBlankGrid()
+    })();
+    function setNumInARandomBlankGrid() {
+        var blankGridIds = getBlankGrids();
+        var i = Math.floor(Math.random() * blankGridIds.length);
+        do {
+            var j = Math.floor(Math.random() * blankGridIds.length);
+        }while (i == j);
+        $('#' + blankGridIds[i]).val(2);
+        $('#' + blankGridIds[j]).val(2);
+    }
+    function getBlankGrids(){
+        var result = [];
+        for(var i = 1; i <= 4; i++){
+            for(var j = 1; j<= 4; j++){
+                if($("#grid-"+i + j).val() == ""){
+                    result.push('grid-' + i + j);
+                }
+            }
+        }
+        return result;
+    }
+    function upSlide() {
+        
+    }
+    
+</script>
+
+</body>
+</html>
