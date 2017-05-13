@@ -77,19 +77,19 @@
     </div>
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="左滑" onclick="upSlide()">
+            <input class="btn btn-default" value="左滑" onclick="leftSlide()">
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4">
             <p id="record" class="text-info"></p>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="右滑" onclick="upSlide()">
+            <input class="btn btn-default" value="右滑" onclick="rightSlide()">
         </div>
     </div>
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4"></div>
         <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="上滑" onclick="upSlide()">
+            <input class="btn btn-default" value="下滑" onclick="downSlide()">
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4"></div>
     </div>
@@ -137,6 +137,7 @@
         }
         return result;
     }
+
     function upSlide() {
         for (var column = 1; column <= 4; column++) {
             for (var row = 1; row < 4; row++) {
@@ -165,6 +166,102 @@
             }
             curValues.forEach(function (item, index) {
                 $('#grid-' + (index + 1) + column).val(item);
+            })
+        }
+        setNumInARandomBlankGrid();
+    }
+    function downSlide() {
+        for (var column = 1; column <= 4; column++) {
+            for (var row = 4; row >1; row--) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    for (var nextRow = row - 1; nextRow >= 1; nextRow--) {
+                        if ($('#grid-' + nextRow + column).val() == cur.val()) {
+                            var i = parseInt(cur.val());
+                            var j =  parseInt($('#grid-' + nextRow + column).val());
+                            cur.val(i+j);
+                            $('#grid-' + nextRow + column).val("");
+                            break;
+                        }else if ($('#grid-' + nextRow + column).val() != ""){
+                            break;
+                        }
+                    }
+                }
+            }
+            var curValues = [];
+            for (var row = 4; row >= 1; row--) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    curValues.push(cur.val());
+                    cur.val("")
+                }
+            }
+            curValues.forEach(function (item, index) {
+                $('#grid-' + (4 - index) + column).val(item);
+            })
+        }
+        setNumInARandomBlankGrid();
+    }
+    function leftSlide() {
+        for (var row = 1; row <= 4; row++) {
+            for (var column = 1; column < 4; column++) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    for (var nextCol = column + 1; nextCol <= 4; nextCol++) {
+                        if ($('#grid-' + row + nextCol).val() == cur.val()) {
+                            var i = parseInt(cur.val());
+                            var j =  parseInt($('#grid-' + row + nextCol).val());
+                            cur.val(i+j);
+                            $('#grid-' + row + nextCol).val("");
+                            break;
+                        }else if ($('#grid-' + row + nextCol).val() != ""){
+                            break;
+                        }
+                    }
+                }
+            }
+            var curValues = [];
+            for (var column = 1; column <= 4; column++) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    curValues.push(cur.val());
+                    cur.val("")
+                }
+            }
+            curValues.forEach(function (item, index) {
+                $('#grid-' + row + (index + 1)).val(item);
+            })
+        }
+        setNumInARandomBlankGrid();
+    }
+    function rightSlide() {
+        for (var row = 1; row <= 4; row++) {
+            for (var column = 4; column >1; column--) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    for (var nextCol = column - 1; nextCol >= 1; nextCol--) {
+                        if ($('#grid-' + row + nextCol).val() == cur.val()) {
+                            var i = parseInt(cur.val());
+                            var j =  parseInt($('#grid-' + row + nextCol).val());
+                            cur.val(i+j);
+                            $('#grid-' + row + nextCol).val("");
+                            break;
+                        }else if ($('#grid-' + row + nextCol).val() != ""){
+                            break;
+                        }
+                    }
+                }
+            }
+            var curValues = [];
+            for (var column = 4; column >= 1; column--) {
+                var cur = $('#grid-' + row + column);
+                if (cur.val() != "") {
+                    curValues.push(cur.val());
+                    cur.val("")
+                }
+            }
+            curValues.forEach(function (item, index) {
+                $('#grid-' + row + (4 - index)).val(item);
             })
         }
         setNumInARandomBlankGrid();
