@@ -119,6 +119,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-
-    r'C:\Users\Administrator\PycharmProjects\mysite\mysite\static',
+    r'D:\_2048web\mysite\static',
 ]

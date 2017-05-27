@@ -2,272 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,user-scalable=no">
     <title>2048</title>
-    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.css">
-    <script src="/static/js/jquery-3.2.1.js"></script>
-    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="2048.css">
+    <script src="jquery-3.2.1.js"></script>
+    <script src="_2048.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
-<p>this is a page of django.</p>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-11">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-12">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-13">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-14">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-21">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-22">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-23">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-24">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-31">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-32">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-33">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-34">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-41">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-42">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-43">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <input type="button" class="btn btn-default" id="grid-44">
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="上滑" onclick="upSlide()">
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="左滑" onclick="leftSlide()">
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <p id="record" class="text-info"></p>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="右滑" onclick="rightSlide()">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <input class="btn btn-default" value="下滑" onclick="downSlide()">
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-    </div>
+<header>
+    <h1>2048</h1>
+    <a href="javascript:newgame()" id="newgamebutton">New Game</a>
+    <p>score:<span id="score">0</span></p>
+</header>
+<div id="grid-container">
+    <div class="grid-cell" id="grid-cell-0-0"></div>
+    <div class="grid-cell" id="grid-cell-0-1"></div>
+    <div class="grid-cell" id="grid-cell-0-2"></div>
+    <div class="grid-cell" id="grid-cell-0-3"></div>
+
+    <div class="grid-cell" id="grid-cell-1-0"></div>
+    <div class="grid-cell" id="grid-cell-1-1"></div>
+    <div class="grid-cell" id="grid-cell-1-2"></div>
+    <div class="grid-cell" id="grid-cell-1-3"></div>
+
+    <div class="grid-cell" id="grid-cell-2-0"></div>
+    <div class="grid-cell" id="grid-cell-2-1"></div>
+    <div class="grid-cell" id="grid-cell-2-2"></div>
+    <div class="grid-cell" id="grid-cell-2-3"></div>
+
+    <div class="grid-cell" id="grid-cell-3-0"></div>
+    <div class="grid-cell" id="grid-cell-3-1"></div>
+    <div class="grid-cell" id="grid-cell-3-2"></div>
+    <div class="grid-cell" id="grid-cell-3-3"></div>
+
+
 </div>
-
-<script>
-    'use strict';
-    var steps = -1;
-    (function () {
-        setNumInARandomBlankGrid()
-    })();
-    function setNumInARandomBlankGrid() {
-        steps++;
-        $('#record').text("第" + steps + '步')
-        for (var i = 1; i <= 4; i++) {
-            for (var j = 1; j <= 4; j++) {
-                if ($("#grid-" + i + j).val() == "2048") {
-                    $('#record').text("成功！");
-                    console.info("success")
-                    return;
-                }
-            }
-        }
-        var blankGridIds = getBlankGrids();
-        if(blankGridIds.length < 2){
-            $('#record').text("失败！");
-            console.info("fail")
-            return;
-        }
-        var i = Math.floor(Math.random() * blankGridIds.length);
-        do {
-            var j = Math.floor(Math.random() * blankGridIds.length);
-        } while (i == j);
-        $('#' + blankGridIds[i]).val(2);
-        $('#' + blankGridIds[j]).val(2);
-    }
-    function getBlankGrids() {
-        var result = [];
-        for (var i = 1; i <= 4; i++) {
-            for (var j = 1; j <= 4; j++) {
-                if ($("#grid-" + i + j).val() == "") {
-                    result.push('grid-' + i + j);
-                }
-            }
-        }
-        return result;
-    }
-
-    function upSlide() {
-        for (var column = 1; column <= 4; column++) {
-            for (var row = 1; row < 4; row++) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    for (var nextRow = row + 1; nextRow <= 4; nextRow++) {
-                        if ($('#grid-' + nextRow + column).val() == cur.val()) {
-                            var i = parseInt(cur.val());
-                            var j =  parseInt($('#grid-' + nextRow + column).val());
-                            cur.val(i+j);
-                            $('#grid-' + nextRow + column).val("");
-                            break;
-                        }else if ($('#grid-' + nextRow + column).val() != ""){
-                            break;
-                        }
-                    }
-                }
-            }
-            var curValues = [];
-            for (var row = 1; row <= 4; row++) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    curValues.push(cur.val());
-                    cur.val("")
-                }
-            }
-            curValues.forEach(function (item, index) {
-                $('#grid-' + (index + 1) + column).val(item);
-            })
-        }
-        setNumInARandomBlankGrid();
-    }
-    function downSlide() {
-        for (var column = 1; column <= 4; column++) {
-            for (var row = 4; row >1; row--) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    for (var nextRow = row - 1; nextRow >= 1; nextRow--) {
-                        if ($('#grid-' + nextRow + column).val() == cur.val()) {
-                            var i = parseInt(cur.val());
-                            var j =  parseInt($('#grid-' + nextRow + column).val());
-                            cur.val(i+j);
-                            $('#grid-' + nextRow + column).val("");
-                            break;
-                        }else if ($('#grid-' + nextRow + column).val() != ""){
-                            break;
-                        }
-                    }
-                }
-            }
-            var curValues = [];
-            for (var row = 4; row >= 1; row--) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    curValues.push(cur.val());
-                    cur.val("")
-                }
-            }
-            curValues.forEach(function (item, index) {
-                $('#grid-' + (4 - index) + column).val(item);
-            })
-        }
-        setNumInARandomBlankGrid();
-    }
-    function leftSlide() {
-        for (var row = 1; row <= 4; row++) {
-            for (var column = 1; column < 4; column++) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    for (var nextCol = column + 1; nextCol <= 4; nextCol++) {
-                        if ($('#grid-' + row + nextCol).val() == cur.val()) {
-                            var i = parseInt(cur.val());
-                            var j =  parseInt($('#grid-' + row + nextCol).val());
-                            cur.val(i+j);
-                            $('#grid-' + row + nextCol).val("");
-                            break;
-                        }else if ($('#grid-' + row + nextCol).val() != ""){
-                            break;
-                        }
-                    }
-                }
-            }
-            var curValues = [];
-            for (var column = 1; column <= 4; column++) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    curValues.push(cur.val());
-                    cur.val("")
-                }
-            }
-            curValues.forEach(function (item, index) {
-                $('#grid-' + row + (index + 1)).val(item);
-            })
-        }
-        setNumInARandomBlankGrid();
-    }
-    function rightSlide() {
-        for (var row = 1; row <= 4; row++) {
-            for (var column = 4; column >1; column--) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    for (var nextCol = column - 1; nextCol >= 1; nextCol--) {
-                        if ($('#grid-' + row + nextCol).val() == cur.val()) {
-                            var i = parseInt(cur.val());
-                            var j =  parseInt($('#grid-' + row + nextCol).val());
-                            cur.val(i+j);
-                            $('#grid-' + row + nextCol).val("");
-                            break;
-                        }else if ($('#grid-' + row + nextCol).val() != ""){
-                            break;
-                        }
-                    }
-                }
-            }
-            var curValues = [];
-            for (var column = 4; column >= 1; column--) {
-                var cur = $('#grid-' + row + column);
-                if (cur.val() != "") {
-                    curValues.push(cur.val());
-                    cur.val("")
-                }
-            }
-            curValues.forEach(function (item, index) {
-                $('#grid-' + row + (4 - index)).val(item);
-            })
-        }
-        setNumInARandomBlankGrid();
-    }
-
-</script>
 
 </body>
 </html>
