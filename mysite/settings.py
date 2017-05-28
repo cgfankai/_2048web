@@ -25,7 +25,7 @@ SECRET_KEY = '2+=r=8usm5tm8as=_15=zxzq5lvdk1ztynyhr4b*aem18__%6l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.lightmoon.cn','localhost']
+ALLOWED_HOSTS = ['www.lightmoon.cn','localhost','*']
 
 
 # Application definition
@@ -119,5 +119,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    r'D:\_2048web\mysite\static',
+    os.path.join(BASE_DIR,'common_static')
 ]

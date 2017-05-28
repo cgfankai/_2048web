@@ -1,12 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,user-scalable=no">
     <title>2048</title>
-    <link rel="stylesheet" type="text/css" href="2048.css">
-    <script src="jquery-3.2.1.js"></script>
-    <script src="_2048.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "2048/css/2048.css" %}">
+    <script src="{% static "jquery-3.2.1.js" %}"></script>
+    <script src="{% static "2048/js/_2048.js" %}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>

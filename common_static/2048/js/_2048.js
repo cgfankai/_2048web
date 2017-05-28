@@ -5,6 +5,10 @@ var board = [];
 var hasConflicte = [];
 var score = 0;
 var documentWidth = window.screen.availWidth;
+var documentHeight = window.screen.availHeight;
+if(documentHeight / 2 < documentWidth){
+    documentWidth = documentHeight/2;
+}
 var gridContainerWidth = 0.92 * documentWidth;
 var cellSideLength = 0.18 * documentWidth;
 var cellSpace = 0.04 * documentWidth;
@@ -53,7 +57,7 @@ function showNumberWithAnimation(i, j, randomNumber) {
         height: cellSideLength,
         top: getPosTop(i, j),
         left: getPosLeft(i, j)
-    }, 100)
+    }, 50)
 }
 function generateOneNumber() {
     if (noSpace(board)) {
@@ -148,7 +152,7 @@ function showMoveAnimation(formX, fromY, toX, toY) {
     numberCell.animate({
         top: getPosTop(toX, toY),
         left: getPosLeft(toX, toY)
-    }, 300);
+    }, 200);
 }
 function updateScore(score) {
     $("#score").text(score);
@@ -181,7 +185,7 @@ function moveLeft() {
                 }
             }
         }
-        setTimeout('updateBoardView()', 300);
+        setTimeout('updateBoardView()', 210);
         return true;
     } else {
         return false;
@@ -212,7 +216,7 @@ function moveUp() {
                 }
             }
         }
-        setTimeout('updateBoardView()', 300);
+        setTimeout('updateBoardView()', 210);
         return true;
     } else {
         return false;
@@ -242,7 +246,7 @@ function moveDown() {
                 }
             }
         }
-        setTimeout('updateBoardView()', 300);
+        setTimeout('updateBoardView()', 210);
         return true;
     } else {
         return false;
@@ -276,8 +280,7 @@ function moveRight() {
                 }
             }
         }
-
-        setTimeout('updateBoardView()', 300);
+        setTimeout('updateBoardView()', 210);
         return true;
     } else {
         return false;
@@ -407,29 +410,29 @@ $(document).keydown(function (event) {
     switch (event.keyCode) {
         case 37://left
             if (moveLeft()) {
-                setTimeout('generateOneNumber()', 310);
-                setTimeout('isGameOver()', 400);
+                setTimeout('generateOneNumber()', 210);
+                setTimeout('isGameOver()', 300);
             }
             event.preventDefault();
             break;
         case 38://up
             if (moveUp()) {
-                setTimeout('generateOneNumber()', 310);
-                setTimeout('isGameOver()', 400);
+                setTimeout('generateOneNumber()', 210);
+                setTimeout('isGameOver()', 300);
             }
             event.preventDefault();
             break;
         case 39://right
             if (moveRight()) {
-                setTimeout('generateOneNumber()', 310);
-                setTimeout('isGameOver()', 400);
+                setTimeout('generateOneNumber()', 210);
+                setTimeout('isGameOver()', 300);
             }
             event.preventDefault();
             break;
         case 40://down
             if (moveDown()) {
-                setTimeout('generateOneNumber()', 310);
-                setTimeout('isGameOver()', 400);
+                setTimeout('generateOneNumber()', 210);
+                setTimeout('isGameOver()', 300);
             }
             event.preventDefault();
             break;
@@ -449,7 +452,7 @@ document.addEventListener('touchend', function (event) {
     endY = event.changedTouches[0].pageY;
     var deltaX = endX - startX;
     var deltaY = endY - startY;
-    if(Math.abs(deltaX) < 0.3 * documentWidth && Math.abs(deltaY) < 0.3 * documentWidth){
+    if(Math.abs(deltaX) < 0.2 * documentWidth && Math.abs(deltaY) < 0.3 * documentWidth){
         return;
     }
 
