@@ -32,6 +32,14 @@ header p {
     font-size: 20px;
     margin: 20px auto;
 }
+#weather {
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    color: #82ff62;
+    background-color: #9f8b77;
+    opacity: 0;
+}
 
 #grid-container {
     width: 460px;

@@ -19,7 +19,36 @@ var endY = 0;
 function getGeolocation(){
     navigator.geolocation.getCurrentPosition(function(position){
         console.info(position);
-        alert(position.coords.accuracy);
+        var longitude = position.coords.longitude;
+        var latitude = position.coords.latitude;
+        var data = {
+            city:longitude + ','+latitude,
+            key:'dd5711543dd342a481e2833a06d9a09a'
+        }
+        $.ajax({
+            url:'https://free-api.heweather.com/v5/weather',
+            method:'GET',
+            data:data,
+            method:'get',
+            success:function (response) {
+                var cityName = response.HeWeather5[0].basic.city + '/'+response.HeWeather5[0].basic.cnty;
+                //阴晴
+                var weather =  response.HeWeather5[0].now.cond.txt;
+                var temp = response.HeWeather5[0].now.tmp + '℃';
+                var suggest = response.HeWeather5[0].suggestion.comf.txt;
+                console.info(response);
+                var html = '<p>'+response.HeWeather5+'</p>';
+                $('#weather').css('width',window.screen.availWidth / 4)
+                    .css('height',window.screen.availWidth / 4)
+                    .append('<p>' + cityName + '&nbsp;'+weather+'&nbsp;'+temp+'</p><p>' + suggest + '</p>')
+                    .animate({
+                        opacity:0.5
+                    },1000)
+            },
+            error:function (response) {
+                alert('获取天气信息失败。')
+            }
+        });
     },function (error) {
         console.info(error);
     },{
