@@ -6,8 +6,8 @@ var hasConflicte = [];
 var score = 0;
 var documentWidth = window.screen.availWidth;
 var documentHeight = window.screen.availHeight;
-if(documentHeight / 2 < documentWidth){
-    documentWidth = documentHeight/2;
+if (documentHeight / 2 < documentWidth) {
+    documentWidth = documentHeight / 2;
 }
 var gridContainerWidth = 0.92 * documentWidth;
 var cellSideLength = 0.18 * documentWidth;
@@ -130,13 +130,21 @@ function updateBoardView() {
                 theNumberCell.css('left', getPosLeft(i, j));
                 theNumberCell.css('background-color', getNumberBackgroundColor(board[i][j]));
                 theNumberCell.css('color', getNumberColor(board[i][j]));
+                if (board[i][j] > 1000) {
+                    theNumberCell.css('font-size', 0.67 * 0.6 * cellSideLength + 'px');
+                } else {
+                    if (board[i][j] > 100) {
+                        theNumberCell.css('font-size', 0.85 * 0.6 * cellSideLength + 'px');
+                    } else {
+                        theNumberCell.css('font-size', 0.6 * cellSideLength + 'px');
+                    }
+                }
                 theNumberCell.text(board[i][j]);
             }
             hasConflicte[i][j] = false;
         }
     }
     $('.number-cell').css('line-height', cellSideLength + 'px');
-    $('.number-cell').css('font-size', 0.6 * cellSideLength + 'px');
 }
 
 function getPosTop(i, j) {
@@ -452,7 +460,7 @@ document.addEventListener('touchend', function (event) {
     endY = event.changedTouches[0].pageY;
     var deltaX = endX - startX;
     var deltaY = endY - startY;
-    if(Math.abs(deltaX) < 0.2 * documentWidth && Math.abs(deltaY) < 0.3 * documentWidth){
+    if (Math.abs(deltaX) < 0.2 * documentWidth && Math.abs(deltaY) < 0.3 * documentWidth) {
         return;
     }
 
@@ -473,7 +481,7 @@ document.addEventListener('touchend', function (event) {
     } else {
         if (deltaY > 0) {
             //moveDown
-             if (moveDown()) {
+            if (moveDown()) {
                 setTimeout('generateOneNumber()', 310);
                 setTimeout('isGameOver()', 400);
             }
