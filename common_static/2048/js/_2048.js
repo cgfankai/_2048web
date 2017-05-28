@@ -37,6 +37,7 @@ function getSessionBestScore() {
         bsetScore = localStorage.getItem('bestScore');
         updateBestScore();
     }else{
+        bsetScore = 0;
     }
 }
 $(document).ready(function () {
@@ -59,6 +60,7 @@ function showNumberWithAnimation(i, j, randomNumber) {
     var theNumberCell = $('#number-cell-' + i + '-' + j);
     theNumberCell.css('background-color', getNumberBackgroundColor(randomNumber));
     theNumberCell.css('color', getNumberColor(randomNumber));
+    theNumberCell.css('font-size', 0.6 * cellSideLength + 'px');
     theNumberCell.text(randomNumber);
     theNumberCell.animate({
         width: cellSideLength,
