@@ -25,7 +25,7 @@ function getGeolocation(){
     },{
         enableHighAccuracy: true,
         timeout: 5000,
-        maximumAge: 25000
+        maximumAge: 5000
     });
 }
 function prepareForMobile() {
