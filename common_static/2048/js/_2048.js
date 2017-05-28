@@ -3,7 +3,7 @@
  */
 var board = [];
 var hasConflicte = [];
-var score = 0;
+var score = 0,bsetScore = 0;
 var documentWidth = window.screen.availWidth;
 var documentHeight = window.screen.availHeight;
 if (documentHeight / 2 < documentWidth) {
@@ -32,7 +32,15 @@ function prepareForMobile() {
     $('.grid-cell').css('height', cellSideLength);
     $('.grid-cell').css('border-radius', cellSideLength * 0.02);
 }
+function getSessionBestScore() {
+    if(localStorage.getItem('bestScore')){
+        bsetScore = localStorage.getItem('bestScore');
+        updateBestScore();
+    }else{
+    }
+}
 $(document).ready(function () {
+    getSessionBestScore();
     prepareForMobile();
     newgame();
 });
@@ -165,6 +173,10 @@ function showMoveAnimation(formX, fromY, toX, toY) {
 function updateScore(score) {
     $("#score").text(score);
 }
+function updateBestScore() {
+    localStorage.setItem('bestScore',bsetScore);
+    $("#best-score").text(bsetScore);
+}
 function moveLeft() {
     if (canMoveLeft(board)) {
         for (var i = 0; i < 4; i++) {
@@ -185,6 +197,10 @@ function moveLeft() {
                             board[i][k] = board[i][j] + board[i][k];
                             board[i][j] = 0;
                             score += board[i][k];
+                            if(score > bsetScore){
+                                bsetScore = score;
+                                updateBestScore();
+                            }
                             updateScore(score);
                             hasConflicte[i][k] = true;
                             continue;
@@ -216,6 +232,10 @@ function moveUp() {
                             board[k][col] = board[row][col] + board[k][col];
                             board[row][col] = 0;
                             score += board[k][col];
+                            if(score > bsetScore){
+                                bsetScore = score;
+                                updateBestScore();
+                            }
                             updateScore(score);
                             hasConflicte[k][col] = true;
                             continue;
@@ -246,6 +266,10 @@ function moveDown() {
                             board[k][col] = board[row][col] + board[k][col];
                             board[row][col] = 0;
                             score += board[k][col];
+                            if(score > bsetScore){
+                                bsetScore = score;
+                                updateBestScore();
+                            }
                             updateScore(score);
                             hasConflicte[k][col] = true;
                             continue;
@@ -281,6 +305,10 @@ function moveRight() {
                             board[row][col] = 0;
                             score += board[row][k];
                             updateScore(score);
+                            if(score > bsetScore){
+                                bsetScore = score;
+                                updateBestScore();
+                            }
                             hasConflicte[k][col] = true;
                             continue;
                         }

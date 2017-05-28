@@ -13,9 +13,9 @@ header h1 {
 
 header #newgamebutton {
     display: block;
-    margin: 20px auto;
+    margin: 15px auto;
     width: 100px;
-    padding: 10px 10px;
+    padding: 5px 5px;
     background-color: #8f7a66;
     color: white;
     font-family: Arial;
@@ -29,7 +29,7 @@ header #newgamebutton:hover {
 
 header p {
     font-family: Arial;
-    font-size: 25px;
+    font-size: 20px;
     margin: 20px auto;
 }
 
