@@ -38,8 +38,7 @@ function getGeolocation(){
                 var suggest = response.HeWeather5[0].suggestion.comf.txt;
                 console.info(response);
                 var html = '<p>'+response.HeWeather5+'</p>';
-                $('#weather').css('width',window.screen.availWidth / 4)
-                    .css('height',window.screen.availWidth / 4)
+                $('#weather')
                     .append('<p>' + cityName + '&nbsp;'+weather+'&nbsp;'+temp+'</p><p>' + suggest + '</p>')
                     .animate({
                         opacity:0.5
@@ -81,6 +80,7 @@ function getSessionBestScore() {
     }
 }
 $(document).ready(function () {
+    $('#weather') .css('height',window.screen.availWidth / 8 > 75?75:window.screen.availWidth / 8);
     getSessionBestScore();
     prepareForMobile();
     newgame();

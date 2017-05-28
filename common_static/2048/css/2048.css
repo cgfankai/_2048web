@@ -33,12 +33,16 @@ header p {
     margin: 20px auto;
 }
 #weather {
+    margin: 0;
+    padding: 0px;
     position: fixed;
     top: 0%;
     right: 0%;
     color: #82ff62;
-    background-color: #9f8b77;
     opacity: 0;
+    overflow:hidden;
+    font-family: Arial;
+    font-size: smaller;
 }
 
 #grid-container {
