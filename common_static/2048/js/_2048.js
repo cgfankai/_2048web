@@ -16,7 +16,18 @@ var startX = 0;
 var startY = 0;
 var endX = 0;
 var endY = 0;
-
+function getGeolocation(){
+    navigator.geolocation.getCurrentPosition(function(position){
+        console.info(position);
+        alert(position.coords.accuracy);
+    },function (error) {
+        console.info(error);
+    },{
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 25000
+    });
+}
 function prepareForMobile() {
     if (documentWidth > 500) {
         gridContainerWidth = 500;
@@ -44,6 +55,7 @@ $(document).ready(function () {
     getSessionBestScore();
     prepareForMobile();
     newgame();
+    getGeolocation();
 });
 
 function noSpace(board) {
