@@ -39,7 +39,7 @@ function getGeolocation(){
                 console.info(response);
                 var html = '<p>'+response.HeWeather5+'</p>';
                 $('#weather')
-                    .append('<p>' + cityName + '&nbsp;'+weather+'&nbsp;'+temp+'</p><p>' + suggest + '</p>')
+                    .append('<p>' + cityName + '&nbsp;'+weather+'&nbsp;'+temp+'</p>')
                     .animate({
                         opacity:0.5
                     },1000)
