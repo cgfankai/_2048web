@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体重记录</title>
+</head>
+<body>
+{%  load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<script type="text/javascript" src="{% static 'weight.js' %}"></script>
+
+<form action="/weight/setWeight" method="post" class="center" style="width: 400px">
+    {% csrf_token %}
+    <label for="weight">今日体重</label>
+    <input type="text" name="weight">
+    <input type="submit" value="提交">
+</form>
+
+</body>
+</html>

@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^2048/',include('_2048.urls')),
+    url(r'^weight/',include('weight.urls')),
 ]
