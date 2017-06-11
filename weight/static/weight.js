@@ -58,8 +58,8 @@ var setWeight = function () {
         ajax({
             url: '/weight/setWeight',
             method: 'post',
-            data:JSON.stringify({
-                weight:parseInt(weight)
+            data: JSON.stringify({
+                weight: parseInt(weight)
             }),
             success: function (response) {
                 console.info(response);
@@ -67,9 +67,61 @@ var setWeight = function () {
             error: function (response) {
                 console.info(response);
             },
-            complete:function (response) {
+            complete: function (response) {
                 console.info(response);
             }
         });
     }
+}
+window.onload = function () {
+    ajax({
+        url: '/weight/getWeights',
+        complete: function (response) {
+            response = JSON.parse(response);
+            console.info(response);
+            var series = [];
+            var series_data = [];
+            (function () {
+                response.forEach(function (item) {
+                    var temp = [item.fields.time_stamp, item.fields.weight];
+                    series_data.push(temp);
+                });
+            })();
+            series = [{name: 'me', data: series_data}]
+
+
+            new Highcharts.Chart('weight-chart', {// 图表初始化函数，其中 container 为图表的容器 div
+                chart: {
+                    type: 'area'                           //指定图表的类型，默认是折线图（line）
+                },
+                title: {
+                    text: '每日体重图'                 //指定图表标题
+                },
+                xAxis: {
+                    type: 'datetime',   //指定x轴分组
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: '体重（kg）'                 //指定y轴的标题
+                    },
+                    min: 0
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                },
+                series: series
+            });
+        }
+    });
 }

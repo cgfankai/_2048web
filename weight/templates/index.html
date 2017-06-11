@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>体重记录</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 </head>
 <body>
-{%  load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<div class="container-fluid">
+    <form action="/weight/setWeight" method="post" class="center-block" style="width: 400px">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="weight">今日体重:</label>
+            <input type="text" id="weight" name="weight">
+            <input type="submit" class="btn btn-success" value="提交">
+        </div>
+    </form>
+    <div style="width: 400px;background-color: #777;height: 400px" class="center-block" id="weight-chart">
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="{% static 'highcharts.js' %}"></script>
 <script type="text/javascript" src="{% static 'weight.js' %}"></script>
-
-<form action="/weight/setWeight" method="post" class="center" style="width: 400px">
-    {% csrf_token %}
-    <label for="weight">今日体重</label>
-    <input type="text" name="weight">
-    <input type="submit" value="提交">
-</form>
-
 </body>
 </html>
