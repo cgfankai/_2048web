@@ -137,7 +137,6 @@ function refreshCHart() {
                 },
                 series: series
             });
-            document.querySelector('#mask').style.display = 'none';
         }
     });
 }
@@ -174,6 +173,7 @@ window.onload = function () {
         var csrftoken = CookieUtil.get('csrftoken');
         var weight = document.querySelector('#weight').value;
         if (weight == '') {
+            document.querySelector('#mask').style.display = 'none';
             return;
         }
         if (document.querySelector('#isJin').checked) {
@@ -190,6 +190,11 @@ window.onload = function () {
             method: 'post',
             data: JSON.stringify(data),
             success: function () {
+                document.querySelector('#weight').setAttribute('disabled', true);
+                document.querySelector('#weight').setAttribute('placeholder', '今日已设置过了');
+                document.querySelector('#submit').setAttribute('disabled', true);
+                document.querySelector('#isJin').setAttribute('disabled', true);
+                document.querySelector('#mask').style.display = 'none';
                 refreshCHart();
             },
             error: function () {
