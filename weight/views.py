@@ -9,21 +9,26 @@ import time
 def index(request):
     return render(request,'index.html')
 
-lastSetWeight = [0];
-_6_HOUR = 1000 * 60 * 60 *6;
+lastSetWeight = 0;
+_12_HOUR = 1000 * 60 * 60 * 12;
 @require_POST
 def setWeight(request):
     if request.method == "POST":
-        weight = request.POST['weight']
+        global lastSetWeight
+        weight = json.loads(request.body)['weight']
         time_stamp = int(round(time.time()*1000))
-        if(time_stamp - lastSetWeight[0] > _6_HOUR):
-            lastSetWeight[0] = time_stamp
+        if(time_stamp - lastSetWeight > _12_HOUR):
+            lastSetWeight = time_stamp
             a = models.Weight(weight=weight,time_stamp=time_stamp)
             a.save()
-            return HttpResponse('success set weight.')
+            return HttpResponse('success set weight.' + weight)
         else:
-            return HttpResponse('6h内已经设置过了。')
+            return HttpResponse('12h内已经设置过了。')
 
 def getWeights(request):
     data = models.Weight.objects.all();
     return HttpResponse(serialize('json',data))
+
+def getUpdateTimeStamp(request):
+    global lastSetWeight
+    return HttpResponse(lastSetWeight)

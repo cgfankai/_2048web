@@ -3,25 +3,111 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     <title>体重记录</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            position: relative;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .btn:focus,
+        .btn:active:focus,
+        .btn.active:focus,
+        .btn.focus,
+        .btn:active.focus,
+        .btn.active.focus {
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+
+        .btn:hover,
+        .btn:focus,
+        .btn.focus {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .btn:active,
+        .btn.active {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        }
+
+        .btn.disabled,
+        .btn[disabled] {
+            cursor: not-allowed;
+            filter: alpha(opacity=65);
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            opacity: .65;
+        }
+
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
+        #mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            opacity: 0.5;
+        }
+    </style>
 </head>
 <body>
+{% csrf_token %}
 
-<div class="container-fluid">
-    <form action="/weight/setWeight" method="post" class="center-block" style="width: 400px">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="weight">今日体重:</label>
-            <input type="text" id="weight" name="weight">
-            <input type="submit" class="btn btn-success" value="提交">
-        </div>
-    </form>
-    <div style="width: 400px;background-color: #777;height: 400px" class="center-block" id="weight-chart">
-    </div>
+<div class="container">
+    <label for="weight" style="display:inline-block;width: 25%">今日体重:</label>
+    <input type="text" id="weight" style="width: 25%">
+    <label for="isJin" style="display:inline-block;width: 10%">市斤:</label>
+    <input type="checkbox" id="isJin" style="margin: 0px 15px 0px 0px">
+    <button id="submit" class="btn btn-default" style="width:25%">提交</button>
+</div>
 
+<div class="container" id="weight-chart">
+</div>
+
+<div id="mask" style="display: none">
 </div>
 
 
